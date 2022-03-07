@@ -74,7 +74,10 @@ export const updateSpecificPostByTitle = async (req, res) => {
     const { title } = req.params;
     const specificPost = await PostModel.findOne({ title });
     if (specificPost) {
-      const updatedPost = req.body;
+      const updatedPost = {
+        ...specificPost._doc,
+        ...req.body,
+      };
       await PostModel.findOneAndReplace({ title }, updatedPost);
       return res.status(201).json({
         message: `Here is your updated post with title: ${title}`,
@@ -95,12 +98,10 @@ export const deleteSpecificPostByTitle = async (req, res) => {
     const { title } = req.params;
     const specificPost = await PostModel.findOneAndDelete({ title });
     if (specificPost)
-      return res
-        .status(201)
-        .json({
-          message: `Successfully deleted your post with title: ${title}`,
-          specificPost,
-        });
+      return res.status(201).json({
+        message: `Successfully deleted your post with title: ${title}`,
+        specificPost,
+      });
     return res.json({ message: `No post found with the title: ${title}` });
   } catch (err) {
     return res.status(500).json({ message: `Fishy situation: ${err}` });

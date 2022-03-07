@@ -8,6 +8,7 @@ import { dbConnect } from "./database/dbConnect.js";
 
 // File imports
 import posts from "./posts/routes/postsRoutes.js";
+import users from "./users/routes/userRoutes.js";
 
 // Environment variable initialized
 dotenv.config();
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 app.use("/posts", posts);
+app.use("/users", users);
 
 // Routes
 app.get("/", (req, res) => res.send("Base route"));
