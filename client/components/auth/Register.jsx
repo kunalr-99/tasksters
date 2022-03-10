@@ -52,10 +52,10 @@ const Login = () => {
 
   return (
     <>
-      <section className="">
+      <section className="max-w-sm">
         <article className="flex flex-col w-[100vw] h-[100vh] items-center justify-center md:flex-row-reverse">
-          <div className="mx-5 shadow-2xl shadow-brandOrange-300">
-            <form className="flex flex-col text-gray-800" action="">
+          <div className="max-w-sm mx-5 shadow-2xl shadow-brandOrange-300">
+            <form className="flex flex-col text-sm text-gray-800" action="">
               <label
                 htmlFor="#"
                 className="my-6 text-3xl font-bold text-center"
@@ -79,7 +79,7 @@ const Login = () => {
                   </div>
                 </Link>
               </div>
-              <div className="pt-4 mx-8 mb-4 text-sm text-center border-t border-gray-300">
+              <div className="pt-4 mx-12 mb-4 text-xs text-center border-t border-gray-300">
                 <p>Or continue with your Email Id</p>
               </div>
               <div className="px-5">

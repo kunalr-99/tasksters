@@ -4,14 +4,14 @@ import express from "express";
 import cors from "cors";
 
 // DataBase imports
-import { dbConnect } from "./database/dbConnect.js";
+import { dbConnect } from "./config/dbConfig.js";
 
 // File imports
-import posts from "./posts/routes/postsRoutes.js";
-import users from "./users/routes/userRoutes.js";
+import posts from "./routes/postsRoutes.js";
+import users from "./routes/userRoutes.js";
 
-// Environment variable initialized
-dotenv.config();
+// Environment variable path set and initialized
+dotenv.config({ path: "./config/config.env" });
 
 // Middleware connections
 const app = express();

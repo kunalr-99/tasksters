@@ -1,4 +1,4 @@
-import PostModel from "../../database/postSchema.js";
+import PostModel from "../models/postSchema.js";
 
 // Create a Post - C
 export const createPost = async (req, res) => {

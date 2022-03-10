@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-import UserModel from "../../database/userSchema.js";
+import UserModel from "../models/userSchema.js";
 
 export const getAllUsers = async (req, res) => {
   try {
