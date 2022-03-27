@@ -15,12 +15,17 @@ import { isAdmin, isAuthenticated } from "../middlewares/auth.js";
 
 const users = express.Router();
 
+// User Auth's
 users.post("/register", registerUser);
 users.post("/login", loginUser);
 users.get("/logout", isAuthenticated, logoutUser);
+
+// Profile Manipulations
 users.get("/me", isAuthenticated, getUserDetails);
 users.put("/me", isAuthenticated, updateUserDetails);
 users.put("/me/password/update", isAuthenticated, updateUserPassword);
+
+// Admin accesses
 users.get("/admin/users", isAuthenticated, isAdmin("admin"), getAllUsers);
 users.get(
   "/admin/user/:id",

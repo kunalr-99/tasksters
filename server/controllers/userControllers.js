@@ -7,7 +7,7 @@ import ErrorHandler from "../utils/ErrorHandler.js";
 
 // User Routes
 export const registerUser = AsyncErrors(async (req, res, next) => {
-  const { fname, lname, email, password } = req.body;
+  const { email } = req.body;
   const requiredUser = await UserModel.findOne({ email });
   if (!requiredUser) {
     const newUser = await UserModel.create(req.body);
@@ -96,6 +96,8 @@ export const updateUserPassword = AsyncErrors(async (req, res, next) => {
   if (!doesOldPassMatch)
     return next(new ErrorHandler(400, `Your old password does not match :(`));
 
+  if (oldPassword === newPassword)
+    return next(new ErrorHandler(400, `Try enterring different password`));
   if (newPassword !== confirmPassword)
     return next(new ErrorHandler(400, `Your new password does not match :(`));
 
@@ -133,9 +135,6 @@ export const getSpecificUser = AsyncErrors(async (req, res, next) => {
     return res
       .status(201)
       .json({ message: `You're required user is here`, requiredUser });
-  return next(
-    new ErrorHandler(400, `This user with id: ${req.params.id} does not exist`)
-  );
 });
 
 export const updateUserRole = AsyncErrors(async (req, res, next) => {

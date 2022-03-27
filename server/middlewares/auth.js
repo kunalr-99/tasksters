@@ -5,7 +5,7 @@ import UserModel from "../models/userSchema.js";
 
 export const isAuthenticated = AsyncErrors(async (req, res, next) => {
   const { jwToken } = req.cookies;
-  if (!jwToken) return next(new ErrorHandler(401, `You need to login first!`));
+  if (!jwToken) return next(new ErrorHandler(401, `You need to login first! `));
 
   const verifyAuth = jwt.verify(jwToken, process.env.JWT_KEY);
   req.user = await UserModel.findById(verifyAuth.user);
